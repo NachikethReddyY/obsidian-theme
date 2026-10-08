@@ -248,22 +248,22 @@ body.is-phone {
     transform: none !important;
     z-index: 0 !important;
   }
-  .mod-root {
+  .mod-root[style] {
     z-index: 1;
   }
   .mod-root[style*="transform: translateX"] {
     border-radius: var(--safe-area-inset-top);
     overflow: hidden;
-    box-shadow: var(--shadow-xs);
+    box-shadow: var(--raised-shadow);
   }
 
-  .workspace-drawer-backdrop {
+  .mod-root[style] ~ .workspace-drawer-backdrop {
     opacity: 0 !important;
   }
-  .is-primary-sidedock-open .workspace-drawer-backdrop {
+  .is-primary-sidedock-open .mod-root[style] ~ .workspace-drawer-backdrop {
     left: var(--mobile-sidebar-width);
   }
-  .is-secondary-sidedock-open .workspace-drawer-backdrop {
+  .is-secondary-sidedock-open .mod-root[style] ~ .workspace-drawer-backdrop {
     left: unset;
     right: var(--mobile-sidebar-width);
   }

@@ -18,22 +18,22 @@ body:is(.mod-macos, .adaptive-mode-off) {
 
     &[data-setting-id="canvas"] .vertical-tab-nav-item-icon {
       --setting-nav-icon-color: var(--color-red);
-      --setting-nav-icon-background: var(--color-base-10) !important;
+      --setting-nav-icon-background: var(--color-base-20) !important;
     }
     &[data-setting-id="community-plugins"] .vertical-tab-nav-item-icon {
       --setting-nav-icon-color: var(--color-blue);
-      --setting-nav-icon-background: var(--color-base-10) !important;
+      --setting-nav-icon-background: var(--color-base-20) !important;
     }
     &[data-setting-id="command-palette"] .vertical-tab-nav-item-icon {
       --setting-nav-icon-background: #242424;
     }
     &[data-setting-id="sync"] .vertical-tab-nav-item-icon {
       --setting-nav-icon-color: var(--color-green);
-      --setting-nav-icon-background: var(--color-base-10) !important;
+      --setting-nav-icon-background: var(--color-base-20) !important;
     }
     &[data-setting-id="webviewer"] .vertical-tab-nav-item-icon {
       --setting-nav-icon-color: var(--color-blue);
-      --setting-nav-icon-background: var(--color-base-10) !important;
+      --setting-nav-icon-background: var(--color-base-20) !important;
     }
   }
 }
@@ -70,16 +70,6 @@ body:is(.mod-macos, .adaptive-mode-off):not(.is-mobile) {
     .setting-item:not(.setting-item-heading, .setting-items .setting-item) {
       padding: var(--setting-items-padding-y) var(--setting-items-padding-x);
     }
-  }
-}
-
-body:is(.mod-macos, .adaptive-mode-off):not(.is-phone) .modal.mod-settings {
-  .vertical-tab-header {
-    border-radius: calc(var(--modal-radius) - 1px) 0 0 calc(var(--modal-radius) - 1px);
-    margin: var(--border-width) 0 var(--border-width) var(--border-width);
-  }
-  .vertical-tab-content-container {
-    margin: var(--border-width) var(--border-width) var(--border-width) 0;
   }
 }
 
@@ -120,20 +110,6 @@ body:is(.mod-macos, .adaptive-mode-off).is-phone {
     }
     .vertical-tab-nav-item-title {
       line-height: var(--touch-size-xl);
-    }
-  }
-  .modal.mod-community-modal {
-    .modal-header {
-      position: absolute;
-    }
-    .modal-title {
-      height: calc(var(--touch-size-m) + 32px);
-    }
-
-    .modal-content .modal-sidebar,
-    .modal-content .community-modal-info {
-      padding-top: calc(var(--touch-size-m) + 32px);
-      border-radius: var(--modal-radius);
     }
   }
 }

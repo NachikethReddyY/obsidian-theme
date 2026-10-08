@@ -30,16 +30,14 @@ body:is(.mod-macos, .adaptive-mode-off) {
 body:is(.mod-macos, .adaptive-mode-off):not(.is-mobile) {
   .menu,
   .suggestion-container {
-    .menu-item,
-    .suggestion-item {
+    .menu-item {
       padding: calc(4px * var(--density-modifier)) 12px;
-    }
-    .suggestion-item {
-      min-height: 32px;
-      justify-content: space-between;
     }
     .menu-separator {
       margin: 6px 8px;
+    }
+    .suggestion-item {
+      padding: calc(8px * var(--density-modifier)) 12px;
     }
   }
 
@@ -103,7 +101,7 @@ body:is(.mod-macos, .adaptive-mode-off).is-phone {
       left: 56px;
       background-color: var(--background-modifier-hover);
       width: auto;
-      height: var(--border-width);
+      height: var(--divider-width);
       content: "";
     }
   }
@@ -227,7 +225,7 @@ body:is(.mod-macos, .adaptive-mode-off) {
 }
 
 body:is(.mod-macos, .adaptive-mode-off):not(.is-mobile) .notice {
-  box-shadow: var(--shadow-l);
+  box-shadow: var(--shadow-s);
 
   &:last-child {
     @starting-style {
@@ -239,7 +237,7 @@ body:is(.mod-macos, .adaptive-mode-off):not(.is-mobile) .notice {
 }
 
 body:is(.mod-macos, .adaptive-mode-off).is-mobile .notice {
-  box-shadow: var(--shadow-xs);
+  box-shadow: var(--raised-shadow);
 
   &:last-child {
     @starting-style {

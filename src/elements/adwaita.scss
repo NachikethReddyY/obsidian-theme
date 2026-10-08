@@ -21,57 +21,49 @@ body.mod-linux:not(.is-android):not(.adaptive-mode-off) {
     padding: 5px 17px;
   }
 
-  // Toggle & Slider
+  // Slider
+  --slider-thumb-border-width: 0;
+  --slider-thumb-y: -8px;
+  --slider-thumb-height: var(--toggle-thumb-height);
+  --slider-thumb-width: var(--toggle-thumb-width);
+  --slider-thumb-radius: var(--toggle-thumb-radius);
+  --slider-thumb-shadow: 0 0 0 var(--border-width) var(--background-modifier-hover), 0 2px 4px hsl(from var(--text-normal) h s l / 20%);
+  --slider-track-height: 4px;
+
+  // Toggle
   --toggle-border-width: 3px;
   --toggle-thumb-height: 20px;
   --toggle-thumb-width: 20px;
-  --toggle-thumb-color: color-mix(in srgb, white 80%, var(--background-primary));
   --toggle-width: 46px;
   --toggle-s-border-width: var(--toggle-border-width);
   --toggle-s-thumb-height: var(--toggle-thumb-height);
   --toggle-s-thumb-width: var(--toggle-thumb-width);
   --toggle-s-width: var(--toggle-width);
 
-  --slider-thumb-border-width: 0;
-  --slider-thumb-y: -8px;
-  --slider-thumb-height: var(--toggle-thumb-height);
-  --slider-thumb-width: var(--toggle-thumb-width);
-  --slider-thumb-radius: var(--toggle-thumb-radius);
-  --slider-track-height: 4px;
-  --slider-track-background: hsl(from var(--text-normal) h s l / 15%);
-  --slider-track-background-hover: hsl(from var(--text-normal) h s l / 20%);
-  --slider-track-background-active: hsl(from var(--text-normal) h s l / 25%);
-
   .checkbox-container::after {
-    box-shadow: 0 2px 4px rgba(0, 0, 6, 20%);
+    box-shadow: var(--slider-thumb-shadow);
   }
-  input[type="range"]::-webkit-slider-thumb {
-    box-shadow:
-      0 0 0 1px rgba(0, 0, 6, 10%),
-      0 2px 4px rgba(0, 0, 6, 20%) !important;
-    background-color: var(--toggle-thumb-color);
-    transition: none;
+  .checkbox-container:where(:not(.is-disabled)):active:after {
+    width: var(--toggle-thumb-width) !important;
+    height: var(--toggle-thumb-height) !important;
+    margin-top: var(--toggle-border-width) !important;
+    left: 0 !important;
   }
-
-  .checkbox-container:not(.is-enabled) {
-    background-color: var(--slider-track-background);
+  .checkbox-container:not(.is-enabled):where(:not(.is-disabled)) {
+    &:hover {
+      background-color: color-mix(in srgb, var(--background-modifier-border-hover), var(--text-normal) 5%);
+    }
+    &:active {
+      background-color: color-mix(in srgb, var(--background-modifier-border-hover), var(--text-normal) 15%);
+    }
   }
-  .checkbox-container:not(.is-enabled):hover,
-  input[type="range"]:hover {
-    background-color: var(--slider-track-background-hover);
-  }
-  .checkbox-container:not(.is-enabled):active,
-  input[type="range"]:active {
-    background-color: var(--slider-track-background-active);
-  }
-
-  .checkbox-container.is-enabled::after,
-  .checkbox-container:hover::after,
-  input[type="range"]:hover::-webkit-slider-thumb,
-  .checkbox-container:active::after,
-  input[type="range"]:active::-webkit-slider-thumb {
-    opacity: 1;
-    background-color: white;
+  .checkbox-container.is-enabled:where(:not(.is-disabled)) {
+    &:hover {
+      background-color: color-mix(in srgb, var(--interactive-accent), var(--text-normal) 5%);
+    }
+    &:active {
+      background-color: color-mix(in srgb, var(--interactive-accent), var(--text-normal) 15%);
+    }
   }
 
   // Dropdown
@@ -94,11 +86,7 @@ body.mod-linux:not(.is-android):not(.adaptive-mode-off) {
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none' viewBox='0 0 24 24'%3e%3cpath stroke='white' stroke-linecap='round' stroke-linejoin='round' stroke-width='4' d='m4 8 8 8 8-8'/%3e%3c/svg%3e");
   }
 
-  // Modal
-  --modal-background: var(--background-primary);
-
   // Settings
-  --settings-background: var(--modal-background);
   --setting-group-heading-color: var(--text-normal);
   --setting-group-heading-size: var(--font-ui-medium);
   --setting-group-heading-weight: calc(var(--font-weight) + var(--bold-modifier));
@@ -107,16 +95,17 @@ body.mod-linux:not(.is-android):not(.adaptive-mode-off) {
   --setting-items-shadow: 0 0 0 1px rgba(0, 0, 6, 3%), 0 1px 3px 1px rgba(0, 0, 6, 7%), 0 2px 6px 2px rgba(0, 0, 6, 3%);
 
   &.theme-light {
-    --divider-color-alt: rgba(0, 0, 6, 7%);
+    --settings-background: var(--background-primary-alt);
+    --setting-items-background: var(--background-primary);
   }
   &.theme-dark {
-    --divider-color-alt: rgba(0, 0, 6, 36%);
+    --setting-items-background: var(--background-secondary);
   }
 
   .modal.mod-settings {
     .vertical-tab-header {
       background-color: var(--background-secondary);
-      border-right: var(--border-width) solid var(--divider-color-alt);
+      border-right: var(--divider-width) solid var(--divider-color);
     }
     .vertical-tab-header-group {
       padding-block: 6px;
@@ -125,7 +114,7 @@ body.mod-linux:not(.is-android):not(.adaptive-mode-off) {
       padding-top: 0px;
     }
     .vertical-tab-header-group:not(:last-child) {
-      border-bottom: var(--border-width) solid hsl(from var(--text-normal) h s l / 15%);
+      border-bottom: var(--divider-width) solid hsl(from var(--text-normal) h s l / 15%);
     }
     .vertical-tab-header-group-title {
       display: none;
@@ -143,15 +132,17 @@ body.mod-linux:not(.is-android):not(.adaptive-mode-off) {
       padding: 6px 6px 0;
     }
 
+    .setting-group .setting-item:not(.setting-item-heading)::before {
+      left: 0;
+      right: 0;
+    }
+
     .setting-group .setting-items,
     div:not(.setting-items, .hotkey-list-container, .style-settings-container) > .setting-item:not(.setting-item-heading) {
       box-shadow: var(--setting-items-shadow);
     }
     .setting-item-heading {
       padding-left: 0;
-    }
-    .setting-item:not(.setting-item-heading) {
-      border-color: var(--divider-color-alt);
     }
     .setting-item-description {
       color: var(--text-faint);
@@ -170,9 +161,6 @@ body.mod-linux:not(.is-android):not(.adaptive-mode-off) {
     .community-item {
       box-shadow: var(--setting-items-shadow);
       border: none;
-    }
-    .modal-setting-nav-bar {
-      padding: 4px;
     }
   }
 }
@@ -216,16 +204,16 @@ body.mod-linux:not(.is-android):not(.adaptive-mode-off):not(.is-mobile) {
     }
 
     .titlebar-button.mod-minimize svg {
-      -webkit-mask-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' viewBox='0 0 16 16'%3e%3cpath fill='%232E3436' d='M4 10.008h8v1.988H4v-1.988Z'/%3e%3c/svg%3e");
+      mask-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' viewBox='0 0 16 16'%3e%3cpath fill='%232E3436' d='M4 10.008h8v1.988H4v-1.988Z'/%3e%3c/svg%3e");
     }
     .titlebar-button.mod-maximize svg {
-      -webkit-mask-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' viewBox='0 0 16 16'%3e%3cpath fill='%232E3436' d='M3.988 3.992v8.012H12V3.992H3.988Zm2 2H10v4.012H5.988V5.992Z'/%3e%3c/svg%3e");
+      mask-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' viewBox='0 0 16 16'%3e%3cpath fill='%232E3436' d='M3.988 3.992v8.012H12V3.992H3.988Zm2 2H10v4.012H5.988V5.992Z'/%3e%3c/svg%3e");
     }
     .titlebar-button.mod-close svg {
-      -webkit-mask-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' viewBox='0 0 16 16'%3e%3cpath fill='%232E3436' d='M4 4h1.031c.254.012.512.129.688.313L8 6.592l2.313-2.28c.265-.231.445-.305.687-.313h1v1c0 .285-.035.55-.25.75L9.469 8.031l2.25 2.25c.187.188.281.453.281.719v1h-1c-.266 0-.531-.094-.719-.281L8 9.438l-2.281 2.28A1.016 1.016 0 0 1 5 12H4v-1c0-.266.094-.531.281-.719l2.282-2.25L4.28 5.75A.904.904 0 0 1 4 5V4Z'/%3e%3c/svg%3e");
+      mask-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' viewBox='0 0 16 16'%3e%3cpath fill='%232E3436' d='M4 4h1.031c.254.012.512.129.688.313L8 6.592l2.313-2.28c.265-.231.445-.305.687-.313h1v1c0 .285-.035.55-.25.75L9.469 8.031l2.25 2.25c.187.188.281.453.281.719v1h-1c-.266 0-.531-.094-.719-.281L8 9.438l-2.281 2.28A1.016 1.016 0 0 1 5 12H4v-1c0-.266.094-.531.281-.719l2.282-2.25L4.28 5.75A.904.904 0 0 1 4 5V4Z'/%3e%3c/svg%3e");
     }
     &.is-maximized .titlebar-button.mod-maximize svg {
-      -webkit-mask-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' viewBox='0 0 16 16'%3e%3cpath fill='%232E3434' d='M4.988 4.992v6.012H11V4.992H4.988Zm2 2H9v2.012H6.988V6.992Z'/%3e%3c/svg%3e");
+      mask-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' viewBox='0 0 16 16'%3e%3cpath fill='%232E3434' d='M4.988 4.992v6.012H11V4.992H4.988Zm2 2H9v2.012H6.988V6.992Z'/%3e%3c/svg%3e");
     }
   }
 
@@ -264,8 +252,8 @@ body.mod-linux:not(.is-android):not(.adaptive-mode-off):not(.is-mobile) {
       svg {
         background-color: currentcolor;
         margin: 0;
-        -webkit-mask-size: 100% 100%;
-        -webkit-mask-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' viewBox='0 0 16 16'%3e%3cpath fill='%232E3436' d='M4 4h1.031c.254.012.512.129.688.313L8 6.592l2.313-2.28c.265-.231.445-.305.687-.313h1v1c0 .285-.035.55-.25.75L9.469 8.031l2.25 2.25c.187.188.281.453.281.719v1h-1c-.266 0-.531-.094-.719-.281L8 9.438l-2.281 2.28A1.016 1.016 0 0 1 5 12H4v-1c0-.266.094-.531.281-.719l2.282-2.25L4.28 5.75A.904.904 0 0 1 4 5V4Z'/%3e%3c/svg%3e");
+        mask-size: 100% 100%;
+        mask-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' viewBox='0 0 16 16'%3e%3cpath fill='%232E3436' d='M4 4h1.031c.254.012.512.129.688.313L8 6.592l2.313-2.28c.265-.231.445-.305.687-.313h1v1c0 .285-.035.55-.25.75L9.469 8.031l2.25 2.25c.187.188.281.453.281.719v1h-1c-.266 0-.531-.094-.719-.281L8 9.438l-2.281 2.28A1.016 1.016 0 0 1 5 12H4v-1c0-.266.094-.531.281-.719l2.282-2.25L4.28 5.75A.904.904 0 0 1 4 5V4Z'/%3e%3c/svg%3e");
       }
 
       &:hover {
@@ -314,7 +302,7 @@ body.mod-linux:not(.is-android):not(.adaptive-mode-off).is-phone {
 
     .menu-separator {
       margin: calc(12px * var(--density-modifier)) 0;
-      border-bottom: var(--border-width) solid var(--background-modifier-border);
+      border-bottom: var(--divider-width) solid var(--background-modifier-border);
     }
   }
 

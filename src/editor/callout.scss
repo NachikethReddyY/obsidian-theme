@@ -1,7 +1,7 @@
 @media screen, print {
   body {
     --callout-blend-mode: normal;
-    --callout-border-width: var(--divider-width);
+    --callout-border-width: var(--border-width);
     --callout-border-opacity: 0.15;
     --callout-padding: 16px;
     --callout-radius: var(--radius-s);
@@ -26,7 +26,6 @@
     }
 
     .callout-title {
-      align-items: center;
       gap: 8px;
     }
 
@@ -44,6 +43,7 @@
 
     .callout-content {
       margin-left: calc(var(--icon-size) + 8px);
+      overflow-x: unset;
     }
   }
 
@@ -51,9 +51,13 @@
     --callout-color: var(--color-accent);
   }
 
-  // Callout: Tactile
+  // Callout: Cupertino
   body:is(.mod-macos, .adaptive-mode-off) .callout:not([data-callout="note-toolbar"]) {
-    box-shadow: var(--shadow-tactile);
-    background: linear-gradient(hsl(from var(--callout-color) h s l / 0.1), hsl(from var(--callout-color) h s l / 0.175));
+    box-shadow:
+      0 0 0 0.5pt hsl(from var(--callout-color) h s l / var(--callout-border-opacity)),
+      var(--raised-shadow);
+    background: var(--raised-background);
+    background-color: hsl(from var(--callout-color) h s l / 0.15);
+    border: none;
   }
 }

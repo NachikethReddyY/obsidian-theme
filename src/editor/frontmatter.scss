@@ -1,6 +1,8 @@
 @media screen, print {
   body {
     --metadata-label-width: calc(9em * var(--metadata-label-width-modifier, 1));
+    --metadata-label-font-size: var(--font-smallest);
+    --metadata-input-font-size: var(--font-smallest);
   }
   body.is-phone {
     --metadata-label-width: calc(7.5em * var(--metadata-label-width-modifier, 1));
@@ -17,8 +19,14 @@
     padding-inline: 0;
     width: 100%;
   }
-  .metadata-property-icon::before {
-    display: none;
+  .metadata-property-icon,
+  .text-icon-button {
+    --icon-size: var(--icon-xs);
+    --icon-stroke: var(--icon-xs-stroke-width);
+
+    &::before {
+      display: none;
+    }
   }
   .metadata-property-key {
     padding-inline: 8px;
@@ -29,7 +37,7 @@
     border-bottom: none !important;
   }
 
-  .metadata-input-longtext:not(:focus) {
+  .metadata-container .metadata-input-longtext:not(:focus) {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: pre;
@@ -43,12 +51,6 @@
   }
   .multi-select-pill {
     line-height: var(--line-height-tight) !important;
-  }
-
-  // Side panels
-  .workspace > .workspace-split:not(.mod-root) .metadata-container .metadata-properties {
-    --metadata-divider-width: 0px;
-    --metadata-gap: 8px;
   }
 
   // Editor panel
@@ -108,17 +110,9 @@
         background-color: var(--background-primary-alt);
       }
 
-      .metadata-property {
-        min-height: 44px;
-      }
-      .metadata-property-icon,
-      .text-icon-button {
-        --icon-size: var(--icon-s);
-        --icon-stroke: var(--icon-s-stroke-width);
-      }
       .metadata-property-key,
       .text-icon-button {
-        padding: 8px 16px;
+        padding: 4px 16px;
       }
     }
 

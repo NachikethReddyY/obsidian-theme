@@ -1,6 +1,8 @@
+body {
+  --status-bar-border-width: 0;
+}
 body.status-bar-baseline .status-bar {
   transition: var(--anim-duration-moderate) var(--anim-motion-baseline);
-  border: none;
   transform-origin: bottom right;
   background-color: transparent;
   min-height: 8px;
@@ -27,13 +29,11 @@ body.status-bar-baseline .status-bar:not(:hover)::before {
 }
 
 body:not(.status-bar-baseline) .status-bar {
-  --status-bar-border-width: var(--border-width);
   right: unset;
   justify-content: center;
   transition:
     var(--anim-duration-moderate) var(--anim-motion-baseline),
     background-color var(--anim-duration-moderate) ease;
-  border: none;
   border-radius: 100vh;
   max-width: 100%;
   min-height: unset;
@@ -43,7 +43,6 @@ body:not(.status-bar-baseline) .status-bar {
   }
   &:not(:hover) {
     bottom: 2px;
-    border-width: 0;
     background-color: hsl(from var(--mono-100) h s l / 0.2);
     padding-block: 0;
     max-width: 160px;
@@ -59,7 +58,6 @@ body:not(.status-bar-baseline) .status-bar {
   &:hover {
     bottom: 4px;
     box-shadow: var(--shadow-s);
-    border-color: var(--background-modifier-border);
     padding: 8px;
     height: 40px;
 
@@ -81,7 +79,6 @@ body:not(.status-bar-baseline) .status-bar {
 
 body:not(.is-grabbing):not(.status-bar-baseline) .app-container.no-transition .status-bar {
   bottom: 4px;
-  border-color: transparent;
   background-color: var(--color-accent);
   color: var(--text-on-accent);
   max-width: 100% !important;

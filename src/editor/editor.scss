@@ -163,6 +163,7 @@
 
   // Codeblocks
   .markdown-rendered pre {
+    --code-border-width: 0px;
     corner-shape: var(--corner-shape);
   }
   .markdown-rendered code {
@@ -171,10 +172,6 @@
   }
   .markdown-rendered pre code {
     white-space: var(--code-white-space);
-  }
-  body:is(.mod-macos, .adaptive-mode-off) .markdown-rendered pre {
-    background: linear-gradient(var(--background-primary-alt), var(--background-secondary));
-    box-shadow: var(--shadow-tactile);
   }
 
   // Dataview
@@ -262,7 +259,7 @@
   .h5-l .markdown-source-view .HyperMD-header-5,
   .h6-l .markdown-reading-view h6,
   .h6-l .markdown-source-view .HyperMD-header-6 {
-    border-bottom: var(--border-width) solid var(--background-modifier-border);
+    border-bottom: var(--divider-width) solid var(--background-modifier-border);
     padding-bottom: var(--p-spacing);
   }
 
@@ -276,7 +273,8 @@
     color: var(--text-highlight, var(--text-normal));
   }
 
-  .cm-s-obsidian span.cm-highlight {
+  .cm-s-obsidian span.cm-highlight,
+  .cm-s-obsidian span.cm-highlight-color-widget {
     box-decoration-break: clone;
     padding-block: 2px;
   }
@@ -311,13 +309,13 @@
     .image-embed:not([width]) > .image-wrapper,
     iframe,
     video,
-    img:not([width], .cm-widgetBuffer, .link-favicon, .emoji, [alt="banner"]) {
+    img:not([width], .cm-widgetBuffer, .link-favicon, .emoji, .highlight-swatch, [alt="banner"]) {
       width: 100%;
       padding: 0;
     }
     iframe,
     video,
-    img:not([width], .cm-widgetBuffer, .link-favicon, .emoji, [alt="banner"]) {
+    img:not([width], .cm-widgetBuffer, .link-favicon, .emoji, .highlight-swatch, [alt="banner"]) {
       background: var(--background-primary-alt);
       max-height: 75vh;
       object-fit: contain;
